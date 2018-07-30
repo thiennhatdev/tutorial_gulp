@@ -1,8 +1,11 @@
 #Tutorial gulp
 
   **Cài đặt gulp**
+
 Cài đặt nodejs và npm.Sau đó dùng lệnh npm install gulp để cài đặt 
+
 Tạo project với lệnh npm init(Đang đứng ở thu mục muốn chứa project)
+
 Chạy lệnh npm install gulp để cài gulp cho project
 Chạy lệnh touch gulpfile.js để tạo file hoạt động chính của gulp
 Trong project tạo file 'src' là file code chính,nó chứa index.html,file sass,css và js
