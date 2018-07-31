@@ -38,11 +38,12 @@ Trong file gulpfile.js dán toàn bộ đoạn code này
       
       
 **Các plugin cho gulp**
+
 1.npm install browser-sync --save-dev:trình duyệt tự load khi ctrl + s.
+
 2.Trong terminal gõ lệnh 'gulp task_name' để thực hiện nhiệm vụ nào đó như gộp file hay chuyển scss thành css
+
 3.gulp watch có tác dụng tự động chuyển scss thành css mà không cần phải gõ lệnh gulp task nhiều
-
-
 
 
 
@@ -52,77 +53,82 @@ Trong file gulpfile.js dán toàn bộ đoạn code này
 Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh sau để tiến hành cài đặt các module
 
 npm install gulp-minify-css --save-dev
+
 npm install gulp-minify --save-dev
+
 npm install gulp-imagemin --save-dev
+
 npm install imagemin-pngquant --save-dev
 
 **Tạo ra một task mới, đặt tên là compress với nội dung như sau:**
 
 
-gulp.task('compress', function() {
-  //cấu hình minify js
-  gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
-    .pipe(minify({
-        exclude: ['tasks'],
-        ignoreFiles: ['-min.js'] //những file không muốn nén
-    }))
-    .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
-  //cấu hình minify css
-  gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
-    .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
-  //cấu hình minify image
-  gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-    .pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngquant()]
-    }))
-    .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
-});
-     Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
-     Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
-     compress
-File gulpfile.js hoàn chỉnh như sau
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var reload = browserSync.reload;
-var minify = require('gulp-minify');
-var minifyCss = require('gulp-minify-css');
-var imagemin = require('gulp-imagemin');
-var pngquant = require('imagemin-pngquant');
+  gulp.task('compress', function() {
+    //cấu hình minify js
 
-gulp.task('serve', [], function () {
-    browserSync({
-        notify: false,
-        server: {
-            baseDir: '.'
-        }
-    });
-    gulp.watch(['*.html'], reload);
-    gulp.watch(['assets/js/*.js'], reload);
-    gulp.watch(['assets/css/*.css'], reload);
-    gulp.watch(['assets/images/*.css'], reload);
-});
-
-gulp.task('compress', function() {
-  //cấu hình minify js
   gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
-    .pipe(minify({
-        exclude: ['tasks'],
-        ignoreFiles: ['-min.js'] //những file không muốn nén
-    }))
-    .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
-  //cấu hình minify css
-  gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
-    .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
-  //cấu hình minify image
-  gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-    .pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngquant()]
-    }))
-    .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
-});
+
+   .pipe(minify({
+          exclude: ['tasks'],
+          ignoreFiles: ['-min.js'] //những file không muốn nén
+      }))
+      .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
+    //cấu hình minify css
+    gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
+      .pipe(minifyCss({compatibility: 'ie8'}))
+      .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+    //cấu hình minify image
+    gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
+      .pipe(imagemin({
+          progressive: true,
+          svgoPlugins: [{removeViewBox: false}],
+          use: [pngquant()]
+      }))
+      .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
+  });
+       Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
+       Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
+       compress
+  File gulpfile.js hoàn chỉnh như sau
+  var gulp = require('gulp');
+  var browserSync = require('browser-sync');
+  var reload = browserSync.reload;
+  var minify = require('gulp-minify');
+  var minifyCss = require('gulp-minify-css');
+  var imagemin = require('gulp-imagemin');
+  var pngquant = require('imagemin-pngquant');
+
+  gulp.task('serve', [], function () {
+      browserSync({
+          notify: false,
+          server: {
+              baseDir: '.'
+          }
+      });
+      gulp.watch(['*.html'], reload);
+      gulp.watch(['assets/js/*.js'], reload);
+      gulp.watch(['assets/css/*.css'], reload);
+      gulp.watch(['assets/images/*.css'], reload);
+  });
+
+  gulp.task('compress', function() {
+    //cấu hình minify js
+    gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
+      .pipe(minify({
+          exclude: ['tasks'],
+          ignoreFiles: ['-min.js'] //những file không muốn nén
+      }))
+      .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
+    //cấu hình minify css
+    gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
+      .pipe(minifyCss({compatibility: 'ie8'}))
+      .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+    //cấu hình minify image
+    gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
+      .pipe(imagemin({
+          progressive: true,
+          svgoPlugins: [{removeViewBox: false}],
+          use: [pngquant()]
+      }))
+      .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
+  });
