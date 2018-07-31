@@ -66,7 +66,7 @@ npm install imagemin-pngquant --save-dev
   gulp.task('compress', function() {
     //cấu hình minify js
 
-  gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
+    gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
 
    .pipe(minify({
           exclude: ['tasks'],
@@ -74,29 +74,30 @@ npm install imagemin-pngquant --save-dev
       }))
       .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
     //cấu hình minify css
-    gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
-      .pipe(minifyCss({compatibility: 'ie8'}))
-      .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+       gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
+         .pipe(minifyCss({compatibility: 'ie8'}))
+         .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
     //cấu hình minify image
-    gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-      .pipe(imagemin({
-          progressive: true,
-          svgoPlugins: [{removeViewBox: false}],
-          use: [pngquant()]
-      }))
-      .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
+       gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
+         .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+       }))
+    .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
   });
        Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
        Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
        compress
+  
   File gulpfile.js hoàn chỉnh như sau
-  var gulp = require('gulp');
-  var browserSync = require('browser-sync');
-  var reload = browserSync.reload;
-  var minify = require('gulp-minify');
-  var minifyCss = require('gulp-minify-css');
-  var imagemin = require('gulp-imagemin');
-  var pngquant = require('imagemin-pngquant');
+    var gulp = require('gulp');
+    var browserSync = require('browser-sync');
+    var reload = browserSync.reload;
+    var minify = require('gulp-minify');
+    var minifyCss = require('gulp-minify-css');
+    var imagemin = require('gulp-imagemin');
+    var pngquant = require('imagemin-pngquant');
 
   gulp.task('serve', [], function () {
       browserSync({
