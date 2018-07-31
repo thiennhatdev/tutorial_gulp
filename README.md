@@ -39,3 +39,5 @@ Trong file gulpfile.js dán toàn bộ đoạn code này
       
 **Các plugin cho gulp**
 1.npm install browser-sync --save-dev:trình duyệt tự load khi ctrl + s.
+2.Trong terminal gõ lệnh 'gulp task_name' để thực hiện nhiệm vụ nào đó như gộp file hay chuyển scss thành css
+3.gulp watch có tác dụng tự động chuyển scss thành css mà không cần phải gõ lệnh gulp task nhiều
