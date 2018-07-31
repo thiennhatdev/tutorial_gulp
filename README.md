@@ -184,10 +184,13 @@ npm install imagemin-pngquant --save-dev
 ==================================================
 
 1.Dùng lệnh npm install  gulp-template-html --save để cài task html cho  project
+
 2.Trong folder gốc tạo 2 folder chứa 2 file html,1 file nguồn tên được gắn vào biến trong file gulpfile.js và 1 file con được gộp
+
 3.Trong file gulpfile.js lưu thêm đoạn code
    
-   gulp.task('html', function(){
+   var build_template = require('gulp-template-html'); 
+   gulp.task('build_template', function(){
     
     return gulp.src('src/html/*.html')
     
@@ -196,6 +199,9 @@ npm install imagemin-pngquant --save-dev
     .pipe(gulp.dest('./dist/'));
 
 });
+
 4.Trong file gốc những phần động đặt là <!--build:ten_the_hoac_khoi-->
+
 5.Trong file con nội dung được viết trong <!--build:ten_the_hoac_khoi-->Nội dung được build ra<!--/build:ten_the_hoac_khoi-->
+
 6.Sau khi xong chạy lệnh gulp ten_task.File đầu ra sẽ nằm ở thư mục được cài đặt trong gulpfile.js
