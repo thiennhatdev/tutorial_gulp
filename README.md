@@ -63,8 +63,7 @@ npm install imagemin-pngquant --save-dev
 **Tạo ra một task mới, đặt tên là compress với nội dung như sau:**
 
 
-  gulp.task('compress', function() {
-    //cấu hình minify js
+  gulp.task('compress', function() {   //cấu hình minify js
 
     gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
 
@@ -73,11 +72,11 @@ npm install imagemin-pngquant --save-dev
           ignoreFiles: ['-min.js'] //những file không muốn nén
       }))
       .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
-    //cấu hình minify css
+              //cấu hình minify css
        gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
          .pipe(minifyCss({compatibility: 'ie8'}))
          .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
-    //cấu hình minify image
+                //cấu hình minify image
        gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
          .pipe(imagemin({
             progressive: true,
