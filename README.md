@@ -68,67 +68,134 @@ npm install imagemin-pngquant --save-dev
     gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
 
    .pipe(minify({
+   
           exclude: ['tasks'],
+   
           ignoreFiles: ['-min.js'] //những file không muốn nén
+      
       }))
+      
       .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
-              //cấu hình minify css
+      
+                //cấu hình minify css
+       
        gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
-         .pipe(minifyCss({compatibility: 'ie8'}))
-         .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+       
+          .pipe(minifyCss({compatibility: 'ie8'}))
+         
+          .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
                 //cấu hình minify image
+        
        gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-         .pipe(imagemin({
+       
+       .pipe(imagemin({
+       
             progressive: true,
+            
             svgoPlugins: [{removeViewBox: false}],
+            
             use: [pngquant()]
+       
        }))
+    
     .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
-  });
-       Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
-       Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
+ 
+ });
+ 
+ Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
+ 
+ Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
        compress
   
   File gulpfile.js hoàn chỉnh như sau
-    var gulp = require('gulp');
-    var browserSync = require('browser-sync');
-    var reload = browserSync.reload;
-    var minify = require('gulp-minify');
-    var minifyCss = require('gulp-minify-css');
-    var imagemin = require('gulp-imagemin');
-    var pngquant = require('imagemin-pngquant');
+
+      var gulp = require('gulp');
+
+      var browserSync = require('browser-sync');
+
+      var reload = browserSync.reload;
+
+      var minify = require('gulp-minify');
+
+      var minifyCss = require('gulp-minify-css');
+
+      var imagemin = require('gulp-imagemin');
+
+      var pngquant = require('imagemin-pngquant');
 
   gulp.task('serve', [], function () {
+
       browserSync({
+      
           notify: false,
+          
           server: {
               baseDir: '.'
           }
       });
+      
       gulp.watch(['*.html'], reload);
+      
       gulp.watch(['assets/js/*.js'], reload);
+      
       gulp.watch(['assets/css/*.css'], reload);
+      
       gulp.watch(['assets/images/*.css'], reload);
+  
   });
 
   gulp.task('compress', function() {
-    //cấu hình minify js
-    gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
-      .pipe(minify({
+  
+     //cấu hình minify js
+    
+     gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
+     
+     .pipe(minify({
+      
           exclude: ['tasks'],
+          
           ignoreFiles: ['-min.js'] //những file không muốn nén
       }))
+      
       .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
     //cấu hình minify css
+    
     gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
+     
       .pipe(minifyCss({compatibility: 'ie8'}))
-      .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+    
+       .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
+    
     //cấu hình minify image
+    
     gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-      .pipe(imagemin({
-          progressive: true,
-          svgoPlugins: [{removeViewBox: false}],
-          use: [pngquant()]
+    
+        .pipe(imagemin({
+        
+             progressive: true,
+          
+             svgoPlugins: [{removeViewBox: false}],
+          
+              use: [pngquant()]
       }))
-      .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
+      
+       .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
   });
+==================================================
+
+1.Dùng lệnh npm install  gulp-template-html --save để cài task html cho  project
+2.Trong folder gốc tạo 2 folder chứa 2 file html,1 file nguồn tên được gắn vào biến trong file gulpfile.js và 1 file con được gộp
+3.Trong file gulpfile.js lưu thêm đoạn code
+   
+   gulp.task('html', function(){
+    
+    return gulp.src('src/html/*.html')
+    
+    .pipe(template('src/template/build-template.html'))
+    
+    .pipe(gulp.dest('./dist/'));
+
+});
+4.Trong file gốc những phần động đặt là <!--build:ten_the_hoac_khoi-->
+5.Trong file con nội dung được viết trong <!--build:ten_the_hoac_khoi-->Nội dung được build ra<!--/build:ten_the_hoac_khoi-->
+6.Sau khi xong chạy lệnh gulp ten_task.File đầu ra sẽ nằm ở thư mục được cài đặt trong gulpfile.js
