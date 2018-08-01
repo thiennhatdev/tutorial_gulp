@@ -205,3 +205,19 @@ npm install imagemin-pngquant --save-dev
 5.Trong file con nội dung được viết trong <!--build:ten_the_hoac_khoi-->Nội dung được build ra<!--/build:ten_the_hoac_khoi-->
 
 6.Sau khi xong chạy lệnh gulp ten_task.File đầu ra sẽ nằm ở thư mục được cài đặt trong gulpfile.js
+
+
+===========================================
+1.var pug = require('gulp-pug');
+
+gulp.task('pug-html',function() {
+ 
+  return gulp.src('./pug/*.pug')
+  
+    .pipe(pug())
+    
+    .pipe(gulp.dest('./pug'));
+
+});
+
+2.Gõ lệnh npm install --save-dev gulp-pug dể cài đặt pug trên gulp
