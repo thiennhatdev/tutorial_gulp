@@ -214,7 +214,9 @@ gulp.task('pug-html',function() {
  
   return gulp.src('./pug/*.pug')
   
-    .pipe(pug())
+    .pipe(pug(
+     pretty : true//dòng này để export ra file html như bình thường
+    ))
     
     .pipe(gulp.dest('./pug'));
 
