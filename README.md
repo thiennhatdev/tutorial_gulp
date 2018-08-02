@@ -18,7 +18,7 @@ npm install --save-dev gulp-concat:  Dùng câu lệnh này để cài gulp conc
 
 Trong file gulpfile.js dán toàn bộ đoạn code này
     ================================
-    var gulp = require('gulp');
+   var gulp = require('gulp');
      
       var concat = require('gulp-concat');
      
@@ -32,7 +32,9 @@ Trong file gulpfile.js dán toàn bộ đoạn code này
       });
 
      
-      gulp.task('default', [  'css']);
+      gulp.task('default', [  'css']);  
+      
+      
       ====================================
    
       
@@ -181,34 +183,10 @@ npm install imagemin-pngquant --save-dev
       
        .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
   });
-==================================================
-
-1.Dùng lệnh npm install  gulp-template-html --save để cài task html cho  project
-
-2.Trong folder gốc tạo 2 folder chứa 2 file html,1 file nguồn tên được gắn vào biến trong file gulpfile.js và 1 file con được gộp
-
-3.Trong file gulpfile.js lưu thêm đoạn code
-   
-   var build_template = require('gulp-template-html'); 
-   gulp.task('build_template', function(){
-    
-    return gulp.src('src/html/*.html')
-    
-    .pipe(template('src/template/build-template.html'))
-    
-    .pipe(gulp.dest('./dist/'));
-
-});
-
-4.Trong file gốc những phần động đặt là <!--build:ten_the_hoac_khoi-->
-
-5.Trong file con nội dung được viết trong <!--build:ten_the_hoac_khoi-->Nội dung được build ra<!--/build:ten_the_hoac_khoi-->
-
-6.Sau khi xong chạy lệnh gulp ten_task.File đầu ra sẽ nằm ở thư mục được cài đặt trong gulpfile.js
-
 
 ===========================================
-1.var pug = require('gulp-pug');
+1.
+var pug = require('gulp-pug');
 
 gulp.task('pug-html',function() {
  
