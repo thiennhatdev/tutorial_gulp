@@ -125,7 +125,9 @@ npm install imagemin-pngquant --save-dev
 
       var pngquant = require('imagemin-pngquant');
 
-  gulp.task('serve', [], function () {
+      
+      
+      gulp.task('serve', [], function () {
 
       browserSync({
       
@@ -144,8 +146,10 @@ npm install imagemin-pngquant --save-dev
       
       gulp.watch(['assets/images/*.css'], reload);
   
-  });
+     });
 
+  
+  
   gulp.task('compress', function() {
   
      //cấu hình minify js
