@@ -196,12 +196,21 @@ gulp.task('pug-html',function() {
  
   return gulp.src('./pug/*.pug')
   
-    .pipe(pug(
+    .pipe(pug({
      pretty : true//dòng này để export ra file html như bình thường
-    ))
+    }))
     
     .pipe(gulp.dest('./pug'));
 
 });
 
 2.Gõ lệnh npm install --save-dev gulp-pug dể cài đặt pug trên gulp
+
+
+
+==============================
+gulp.task('sass',function() {
+    return gulp.src('src/scss/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('src/css/'));
+});
