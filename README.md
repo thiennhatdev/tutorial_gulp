@@ -6,20 +6,18 @@
 4. Chạy lệnh touch gulpfile.js để tạo file hoạt động chính của gulp
 5. Trong project tạo file 'src' là file code chính,nó chứa index.html,file sass,css và js
 
- ## Tính năng đầu tiên trong gulp là gộp  file css và js**
-
-npm install --save-dev gulp-concat:  Dùng câu lệnh này để cài gulp concat(gộp file)
-
-Trong file gulpfile.js dán toàn bộ đoạn code này
+ ## Tính năng đầu tiên trong gulp là gộp  file css và js
+* npm install --save-dev gulp-concat:  Dùng câu lệnh này để cài gulp concat(gộp file)
+* Trong file gulpfile.js dán toàn bộ đoạn code này
   
-  `var gulp = require('gulp');
+  ` var gulp = require('gulp');
    var concat = require('gulp-concat');
    gulp.task('css', function(){
      return gulp.src('thu_mục_chứa_file_css/*.css')
        .pipe(concat('file_css_dc_gop'))
        .pipe(gulp.dest('./thu_muc_chua_file_tren/'));
    });
-   gulp.task('default', [  'css']);`
+   gulp.task('default', [  'css']); `
       
       
     
