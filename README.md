@@ -39,55 +39,34 @@
 
 Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh sau để tiến hành cài đặt các module
 
-npm install gulp-minify-css --save-dev
+* npm install gulp-minify-css --save-dev
+* npm install gulp-minify --save-dev
+* npm install gulp-imagemin --save-dev
+* npm install imagemin-pngquant --save-dev
 
-npm install gulp-minify --save-dev
-
-npm install gulp-imagemin --save-dev
-
-npm install imagemin-pngquant --save-dev
-
-**Tạo ra một task mới, đặt tên là compress với nội dung như sau:**
+## Tạo ra một task mới, đặt tên là compress với nội dung như sau:
 
 
-  gulp.task('compress', function() {   //cấu hình minify js
-
+  `gulp.task('compress', function() {   //cấu hình minify js
     gulp.src('assets/js/*.js') //đường dẫn đến thư mục chứa các file js
-
    .pipe(minify({
-   
           exclude: ['tasks'],
-   
           ignoreFiles: ['-min.js'] //những file không muốn nén
-      
-      }))
-      
-      .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén
-      
-                //cấu hình minify css
-       
-       gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css
-       
-          .pipe(minifyCss({compatibility: 'ie8'}))
-         
+      }))     
+      .pipe(gulp.dest('dist/js')); //thư mục dùng để chứa các file js sau khi nén      
+                //cấu hình minify css       
+       gulp.src('assets/css/*.css') //đường dẫn đến thư mục chứa các file css       
+          .pipe(minifyCss({compatibility: 'ie8'}))         
           .pipe(gulp.dest('dist/css')); //thư mục dùng để chứa các file css sau khi nén
-                //cấu hình minify image
-        
-       gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images
-       
-       .pipe(imagemin({
-       
-            progressive: true,
-            
-            svgoPlugins: [{removeViewBox: false}],
-            
-            use: [pngquant()]
-       
-       }))
-    
-    .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
- 
- });
+                //cấu hình minify image        
+       gulp.src('assets/images/*') //đường dẫn đến thư mục chứa các file images       
+       .pipe(imagemin({      
+            progressive: true,           
+            svgoPlugins: [{removeViewBox: false}],            
+            use: [pngquant()]       
+       }))  
+    .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén 
+ });`
  
  Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
  
