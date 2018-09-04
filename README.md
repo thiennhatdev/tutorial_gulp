@@ -68,12 +68,10 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
     .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén 
  });`
  
- Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
- 
- Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
-       compress
-  
-  File gulpfile.js hoàn chỉnh như sau
+ * Để thực thi task này (chỉ nên thực thi sau khi đã hoàn tất project), chúng ta gõ lệnh: gulp compress
+ * Trong thư mục project của bạn sẽ xuất hiện thêm một thư mục dist (chứa các file đã được nén) như hình dưới
+       compress 
+ * File gulpfile.js hoàn chỉnh như sau
 
       var gulp = require('gulp');
 
@@ -152,7 +150,7 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
        .pipe(gulp.dest('dist/images')); //thư mục dùng để chứa các file images sau khi nén
   });
 
-===========================================
+
 1. `var pug = require('gulp-pug');
 gulp.task('pug-html',function() { 
   return gulp.src('./pug/*.pug')  
