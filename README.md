@@ -5,6 +5,20 @@
 3. Chạy lệnh npm install gulp để cài gulp cho project
 4. Chạy lệnh touch gulpfile.js để tạo file hoạt động chính của gulp
 5. Trong project tạo file 'src' là file code chính,nó chứa index.html,file sass,css và js
+ ## Tính năng quan trọng trong gulp là load browser
+ 
+` var browserSync = require('browser-sync').create(); 
+ var reload = browserSync.reload;
+
+ 
+ gulp.task('serve',['sass'],function() {
+    browserSync.init({
+        server: './'
+    });
+    gulp.watch('./app/home/scss/all.scss',['sass']);
+    gulp.watch('./*.html').on('change',reload);
+});`
+
 
  ## Tính năng đầu tiên trong gulp là gộp  file css và js
 * npm install --save-dev gulp-concat:  Dùng câu lệnh này để cài gulp concat(gộp file)
