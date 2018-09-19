@@ -14,7 +14,13 @@
  gulp.task('serve',['sass'],function() {
     browserSync.init({
         server: './'
+        //nếu muốn load với file html trong thư mục nào đó thì phải dùng như sau
+        server : {
+             baseDir : '/duong/dan/den/file'
+             index: 'tên file html'
+        }
     });
+    
     gulp.watch('./app/home/scss/all.scss',['sass']);
     gulp.watch('./*.html').on('change',reload);
 });`
