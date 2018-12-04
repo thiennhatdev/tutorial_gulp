@@ -173,9 +173,11 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
 
  ##### FIle gulpfile.js chuẩn không cần chỉnh
  
-     var gulp = require('gulp');
+         var gulp = require('gulp');
 
-      var browserSync = require('browser-sync');
+      var browserSync = require('browser-sync').create();
+
+      var watch = require('gulp-watch');
 
       var reload = browserSync.reload;
 
@@ -188,38 +190,29 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
           .pipe(pug({
            pretty : true//dòng này để export ra file html như bình thường
           }))   
-          .pipe(gulp.dest('./app/built/'));
+          .pipe(gulp.dest('./app/built/'))
+          .pipe(browserSync.stream());
       });
       
         gulp.task('sass',function() {
           return gulp.src('./app/template/scss/*.scss')
               .pipe(sass().on('error', sass.logError))
-              .pipe(gulp.dest('./app/built/css'));
+              .pipe(gulp.dest('./app/built/css'))
+              .pipe(browserSync.stream());
       });
       
       
       
-      gulp.task('serve', [], function () {
+      gulp.task('serve', ['pug','sass'], function() {
 
-      browserSync({
-      
-          notify: false,
-          
-          server: {
-              baseDir: './app/built/'
-          }
-      });
-      
-      gulp.watch(['./app/built/*.html'], reload);
-      
-      gulp.watch(['./app/built/js/*.js'], reload);
-      
-      gulp.watch(['./app/built/css/*.css'], reload);
-      
-  
-     });
-
-  
+        browserSync.init({
+            server: "./app/built"
+        });
+        
+        gulp.watch("app/template/pug/**/*.pug", ['pug']);
+        gulp.watch("app/template/scss/**/*.scss", ['sass']);
+        gulp.watch("app/built/*.html").on('change', browserSync.reload);
+    });
 
         // run---------
         gulp.task('default', [ 'pug','sass','serve']);
