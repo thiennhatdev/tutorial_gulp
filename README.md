@@ -171,18 +171,55 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
   });
 
 
-1. `var pug = require('gulp-pug');
-gulp.task('pug-html',function() { 
-  return gulp.src('./pug/*.pug')  
-    .pipe(pug({
-     pretty : true//dòng này để export ra file html như bình thường
-    }))   
-    .pipe(gulp.dest('./pug'));
-});`
+ ##### FIle gulpfile.js chuẩn không cần chỉnh
+ 
+     var gulp = require('gulp');
 
-2. Gõ lệnh npm install --save-dev gulp-pug dể cài đặt pug trên gulp
-`gulp.task('sass',function() {
-    return gulp.src('src/scss/*.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('src/css/'));
-});`
+      var browserSync = require('browser-sync');
+
+      var reload = browserSync.reload;
+
+      var pug = require('gulp-pug');
+      
+      var sass = require('gulp-sass');
+
+      gulp.task('pug',function() { 
+        return gulp.src('./app/template/pug/*.pug')  
+          .pipe(pug({
+           pretty : true//dòng này để export ra file html như bình thường
+          }))   
+          .pipe(gulp.dest('./app/built/'));
+      });
+      
+        gulp.task('sass',function() {
+          return gulp.src('./app/template/scss/*.scss')
+              .pipe(sass().on('error', sass.logError))
+              .pipe(gulp.dest('./app/built/css'));
+      });
+      
+      
+      
+      gulp.task('serve', [], function () {
+
+      browserSync({
+      
+          notify: false,
+          
+          server: {
+              baseDir: './app/built/'
+          }
+      });
+      
+      gulp.watch(['./app/built/*.html'], reload);
+      
+      gulp.watch(['./app/built/js/*.js'], reload);
+      
+      gulp.watch(['./app/built/css/*.css'], reload);
+      
+  
+     });
+
+  
+
+        // run---------
+        gulp.task('default', [ 'pug','sass','serve']);
