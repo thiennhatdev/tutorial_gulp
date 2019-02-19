@@ -216,3 +216,9 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
 
         // run---------
         gulp.task('default', [ 'pug','sass','serve']);
+        
+        
+        
+        
+    ### Nếu xuất hiện l Task function must be specified thì cài lại gulp phiên bản thấp hơn
+     ####   npm install gulp@3.9.1
