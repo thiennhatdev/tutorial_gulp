@@ -222,3 +222,20 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
         
     ### Nếu xuất hiện l Task function must be specified thì cài lại gulp phiên bản thấp hơn
      ####   npm install gulp@3.9.1
+    ### Để import bootstrap vào thì npm install bootstrap để cài vào node module,sau đó thêm đoạn code sau vào gulpfile.js để built ra file css và js .
+     . gulp.task('sass', function() {
+         return gulp.src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'])
+        .pipe(sass())
+        .pipe(gulp.dest("src/css"))
+        .pipe(browserSync.stream());   
+     });
+
+       // Move the javascript files into our /src/js folder
+       gulp.task('js', function() {
+           return gulp.src(['node_modules/bootstrap/dist/js/bootstrap.min.js', 'node_modules/jquery/dist/jquery.min.js', 'node_modules/tether/dist/js/tether.min.js'])
+               .pipe(gulp.dest("src/js"))
+               .pipe(browserSync.stream());
+       });
+     . Chú ý sửa lại vài đường dẫn.
+     . Cuối cùng tại file pug nào muốn dùng  bootstrap  thì link 2 file css và js đã built ra vào head.
+     
