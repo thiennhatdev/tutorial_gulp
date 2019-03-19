@@ -239,3 +239,8 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
      . Chú ý sửa lại vài đường dẫn.
      . Cuối cùng tại file pug nào muốn dùng  bootstrap  thì link 2 file css và js đã built ra vào head.
      
+     
+  ============================
+  - Vì đang bị lỗi chỉ chạy được file index.html nên ta sẽ tạo mọi trang là index.html rồi sẽ đổi tên và chuyển thư mục sau.
+  
+     
