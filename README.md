@@ -242,5 +242,6 @@ Ta cũng sử dụng npm như trên, thực thi lần lượt các câu lệnh s
      
   ============================
   - Vì đang bị lỗi chỉ chạy được file index.html nên ta sẽ tạo mọi trang là index.html rồi sẽ đổi tên và chuyển thư mục sau.
-  - Điều quan trọng tỏng việc import file scss vào 1 file scss khác thì phải import cho nó hiểu cái nào có tr
+  - Điều quan trọng tỏng việc import file scss vào 1 file scss khác thì phải import cho nó hiểu cái nào có trước để không bị lỗi(khai báo biến phải được đặt lên hàng đầu).
+  -
      
